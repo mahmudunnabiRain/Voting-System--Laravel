@@ -57,7 +57,7 @@
                   <label for="pwd">Password:</label>
                   <input type="password" class="form-control" id="pwd" name="pwd">
                 </div>
-                <button type="submit" class="btn btn-success">Login</button>
+                <button type="submit" class="btn btn-primary">Login</button>
                     @if($errors->any())
                     <h5 class="error-msg">{{$errors->first()}}</h5>
                     @endif

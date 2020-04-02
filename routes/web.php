@@ -53,3 +53,47 @@ Route::get('co_admin', function(){
 });
 
 
+Route::get('create_poll', function(){
+    $adminData=Session::get('adminData');
+    if($adminData){
+        return view('create_poll');
+    }
+    else
+    {
+        return redirect('/');
+    }
+});
+
+Route::get('voter', function(){
+    $adminData=Session::get('adminData');
+    if($adminData){
+        return view('voter');
+    }
+    else
+    {
+        return redirect('/');
+    }
+});
+
+Route::get('progress', function(){
+    $adminData=Session::get('adminData');
+    if($adminData){
+        return view('progress');
+    }
+    else
+    {
+        return redirect('/');
+    }
+});
+
+
+Route::get('collect_vote', function(){
+    $adminData=Session::get('adminData');
+    if($adminData){
+        return view('collect_vote');
+    }
+    else
+    {
+        return redirect('/');
+    }
+});

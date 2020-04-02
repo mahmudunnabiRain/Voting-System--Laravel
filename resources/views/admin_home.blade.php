@@ -25,9 +25,8 @@
                 padding-right: 10;
                 padding-left: 15;
             }
-
-
             
+    
         </style>
 
       </head>
@@ -46,16 +45,32 @@
                 <li class="{{ (request()->is('admin_home')) ? 'active' : '' }}"><a href="admin_home">Home</a></li>
                 
                 @if (Session::get('adminData')->type == 'super')
-                    <li><a href="#">Create Poll</a></li>
+                    <li class="{{ (request()->is('create_poll')) ? 'active' : '' }}"><a href="create_poll">Create Poll</a></li>
                 @endif
 
                 @if (Session::get('adminData')->type == 'super')
-                    <li class="{{ (request()->is('co_admin')) ? 'active' : '' }}"><a href="co_admin">Co-Admin</a></li>
+                <li class="dropdown {{ (request()->is('co_admin')) ? 'active' : '' }}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Co-Admin
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="co_admin">Create admin</a></li>
+                      <li><a href="#">Update admin</a></li>
+                      <li><a href="#">Kill admin</a></li>
+                    </ul>
+                </li>
                 @endif
 
-                <li><a href="#">Voter</a></li>
-                <li><a href="#">Collect Vote</a></li>
-                <li><a href="#">Progress</a></li>
+                <li class="dropdown {{ (request()->is('voter')) ? 'active' : '' }}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Voter
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="voter">Create Voter</a></li>
+                      <li><a href="#">Update Voter</a></li>
+                      <li><a href="#">Kill voter</a></li>
+                    </ul>
+                </li>
+                <li class="{{ (request()->is('collect_vote')) ? 'active' : '' }}"><a href="collect_vote">Collect Vote</a></li>
+                <li class="{{ (request()->is('progress')) ? 'active' : '' }}"><a href="progress">Progress</a></li>
 
               </ul>
               <div class="nav navbar-nav navbar-right">
