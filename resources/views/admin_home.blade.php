@@ -38,7 +38,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" href="#">VotingSystem</a>
+                <a class="navbar-brand">VotingSystem</a>
               </div>
               <ul class="nav navbar-nav">
 
@@ -49,11 +49,11 @@
                 @endif
 
                 @if (Session::get('adminData')->type == 'super')
-                <li class="dropdown {{ (request()->is('co_admin')) ? 'active' : '' }}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Co-Admin
+                <li class="dropdown {{ (request()->is('create_admin')) ? 'active' : '' }}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="co_admin">Create admin</a></li>
+                      <li><a href="create_admin">Create admin</a></li>
                       <li><a href="#">Update admin</a></li>
                       <li><a href="#">Kill admin</a></li>
                     </ul>
@@ -74,7 +74,7 @@
 
               </ul>
               <div class="nav navbar-nav navbar-right">
-                <a href="logOut" class="btn btn-danger navbar-btn">LogOut</a>
+                <a href="logout" class="btn btn-primary navbar-btn">Logout</a>
               </div>
             </div>
         </nav>

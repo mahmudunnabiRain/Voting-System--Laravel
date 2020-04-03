@@ -10,14 +10,16 @@
         <style>
             
             .login-form{
-                width: 30%;
+                width: 400;
                 margin:auto;
                 margin-top: 120;
+                padding: 40;
             }
             .btn{
                 width: 100%;
             }
             .error-msg{
+              padding-top: 20;
               color:red;
               text-align: center;
             }
@@ -46,8 +48,9 @@
 
     <div class="content">
         @section('content')
-        <div class="login-form">
-            <form action="/loginSubmit" method="POST">
+        
+        <div class="login-form jumbotron">
+            <form action="/login_submit" method="POST">
             @csrf
                 <div class="form-group">
                   <label for="email">Email address:</label>

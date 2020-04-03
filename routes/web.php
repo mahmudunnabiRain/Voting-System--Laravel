@@ -25,75 +25,39 @@ Route::get('/', function () {
 
 });
 
-Route::post('loginSubmit', 'Login@loginSubmit');
+
+Route::post('login_submit', 'AdminController@loginSubmit');
+Route::get('logout','AdminController@logout');
+Route::post('create_admin_submit', 'AdminController@createAdmin')->middleware('check_auth');
+
+
 
 
 Route::get('admin_home', function(){
-    $adminData=Session::get('adminData');
-    if($adminData){
-        return view('admin_home');
-    }
-    else
-    {
-        return redirect('/');
-    }
-});
+    return view('admin_home');
+})->middleware('check_auth');
 
-Route::get('logOut','Login@logOut');
 
-Route::get('co_admin', function(){
-    $adminData=Session::get('adminData');
-    if($adminData){
-        return view('co_admin');
-    }
-    else
-    {
-        return redirect('/');
-    }
-});
+
+Route::get('create_admin', function(){
+    return view('admin_form');
+})->middleware('check_auth');
+
 
 
 Route::get('create_poll', function(){
-    $adminData=Session::get('adminData');
-    if($adminData){
-        return view('create_poll');
-    }
-    else
-    {
-        return redirect('/');
-    }
-});
+    return view('create_poll');
+})->middleware('check_auth');
 
 Route::get('voter', function(){
-    $adminData=Session::get('adminData');
-    if($adminData){
-        return view('voter');
-    }
-    else
-    {
-        return redirect('/');
-    }
-});
+    return view('voter');
+})->middleware('check_auth', 'check_access_voter');
 
 Route::get('progress', function(){
-    $adminData=Session::get('adminData');
-    if($adminData){
-        return view('progress');
-    }
-    else
-    {
-        return redirect('/');
-    }
-});
+    return view('progress');
+})->middleware('check_auth');
 
 
 Route::get('collect_vote', function(){
-    $adminData=Session::get('adminData');
-    if($adminData){
-        return view('collect_vote');
-    }
-    else
-    {
-        return redirect('/');
-    }
-});
+    return view('collect_vote');
+})->middleware('check_auth', 'check_access_collect_vote');

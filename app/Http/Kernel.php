@@ -52,6 +52,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'check_auth' => \App\Http\Middleware\CheckAuth::class,
+        'check_access_collect_vote' => \App\Http\Middleware\CheckAccessCollectVote::class,
+        'check_access_voter' => \App\Http\Middleware\CheckAccessVoter::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
