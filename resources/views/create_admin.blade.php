@@ -4,14 +4,18 @@
 
 <style>
     .create_form{
-        width: 400;
+        width: 380;
         margin-left: 5%;
+        margin-right: 5%;
         margin-top: 30;
         padding: 40;
     }
 
-    .btn{
-        width: 100%;
+    
+    .alert{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 </style>
 
@@ -32,8 +36,24 @@
 
 </script>
 
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Create Admin</h4>
+        <p>Insert fields with required data.</p>  
+    </div>
+
+    @if(session()->has('message'))
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> {{session()->get('message')}}
+    </div>
+    @endif
+
     <div class='create_form jumbotron'>
-        <form action="create_admin_submit" method="POST">
+
+        
+        
+
+        <form action="create_admin_submit" method="POST" name="create_admin_form">
         @csrf
 
             <div class="form-group">
@@ -57,13 +77,13 @@
             <div style="display: none" id="permission_box">
 
                 <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="access_collect_vote" name="access_collect_vote">
-                <label class="form-check-label" for="access_collect_vote">Can collect vote</label>
+                <input type="checkbox" class="form-check-input" id="access_voter" name="access_voter">
+                <label class="form-check-label" for="access_voter">Can manipulate voter info</label>
                 </div>
 
                 <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="access_voter" name="access_voter">
-                <label class="form-check-label" for="access_voter">Can manipulate voter info</label>
+                <input type="checkbox" class="form-check-input" id="access_collect_vote" name="access_collect_vote">
+                <label class="form-check-label" for="access_collect_vote">Can collect vote</label>
                 </div>
 
             </div>
@@ -78,7 +98,7 @@
                 <input type="password" class="form-control" id="pwd_retype" name="pwd_retype" placeholder="Password">
             </div>
 
-            <button type="submit" class="btn btn-primary">Create admin account</button>
+            <button type="submit" class="btn btn-primary" style="width:100%">Create admin account</button>
         </form>
     </div>
 

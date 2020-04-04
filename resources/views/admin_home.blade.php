@@ -3,6 +3,7 @@
         <title>Voting System</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -14,9 +15,7 @@
                 margin:auto;
                 margin-top: 120;
             }
-            .btn{
-        
-            }
+            
             .error-msg{
               color:red;
               text-align: center;
@@ -42,10 +41,10 @@
               </div>
               <ul class="nav navbar-nav">
 
-                <li class="{{ (request()->is('admin_home')) ? 'active' : '' }}"><a href="admin_home">Home</a></li>
+                <li class="{{ (request()->is('admin_home')) ? 'active' : '' }}"><a href="/admin_home">Home</a></li>
                 
                 @if (Session::get('adminData')->type == 'super')
-                    <li class="{{ (request()->is('create_poll')) ? 'active' : '' }}"><a href="create_poll">Create Poll</a></li>
+                    <li class="{{ (request()->is('create_poll')) ? 'active' : '' }}"><a href="/create_poll">Create Poll</a></li>
                 @endif
 
                 @if (Session::get('adminData')->type == 'super')
@@ -53,9 +52,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="create_admin">Create admin</a></li>
-                      <li><a href="#">Update admin</a></li>
-                      <li><a href="#">Kill admin</a></li>
+                      <li><a href="/create_admin">Create admin</a></li>
+                      <li><a href="/manage_admin">Manage admin</a></li>
                     </ul>
                 </li>
                 @endif
@@ -64,17 +62,17 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Voter
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="voter">Create Voter</a></li>
+                      <li><a href="/voter">Create Voter</a></li>
                       <li><a href="#">Update Voter</a></li>
                       <li><a href="#">Kill voter</a></li>
                     </ul>
                 </li>
-                <li class="{{ (request()->is('collect_vote')) ? 'active' : '' }}"><a href="collect_vote">Collect Vote</a></li>
-                <li class="{{ (request()->is('progress')) ? 'active' : '' }}"><a href="progress">Progress</a></li>
+                <li class="{{ (request()->is('collect_vote')) ? 'active' : '' }}"><a href="/collect_vote">Collect Vote</a></li>
+                <li class="{{ (request()->is('progress')) ? 'active' : '' }}"><a href="/progress">Progress</a></li>
 
               </ul>
               <div class="nav navbar-nav navbar-right">
-                <a href="logout" class="btn btn-primary navbar-btn">Logout</a>
+                <a href="/logout" class="btn btn-danger navbar-btn">Logout</a>
               </div>
             </div>
         </nav>

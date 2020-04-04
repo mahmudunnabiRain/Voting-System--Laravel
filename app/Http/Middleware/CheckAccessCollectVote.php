@@ -23,7 +23,7 @@ class CheckAccessCollectVote
             return redirect('/');
             
         }
-        else if($request->session()->get('adminData')->access_collect_vote == 0)
+        else if($request->session()->get('adminData')->access_collect_vote == 'no')
         {
             return redirect('/');
         }

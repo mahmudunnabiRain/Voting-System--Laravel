@@ -20,32 +20,33 @@ class AdminController extends Controller
         $adminEntry->type = $req->type;
         if($req->type == 'super')
         {
-            $adminEntry->access_voter = 1;
-            $adminEntry->access_collect_vote = 1;
+            $adminEntry->access_voter = 'yes';
+            $adminEntry->access_collect_vote = 'yes';
         }
         else
         {
             if($req->has('access_voter'))
             {
-                $adminEntry->access_voter = 1;
+                $adminEntry->access_voter = 'yes';
             }
             else
             {
-                $adminEntry->access_voter = 0;
+                $adminEntry->access_voter = 'no';
             }
             if($req->has('access_collect_vote'))
             {
-                $adminEntry->access_collect_vote = 1;
+                $adminEntry->access_collect_vote = 'yes';
             }
             else
             {
-                $adminEntry->access_collect_vote = 0;
+                $adminEntry->access_collect_vote = 'no';
             }
         }
         $adminEntry->password = $req->pwd;
 
         $adminEntry->save();
-        return redirect('create_admin')->with('message','New admin created');
+        $req->session()->flash('message', 'New admin created.');
+        return redirect('create_admin');
         
     }
 
@@ -75,4 +76,56 @@ class AdminController extends Controller
         Session::forget('adminData');
         return redirect('/');
     }
+
+    function editAdmin($id)
+    {
+        $targetAdmin = Admin::where('id', $id)->first();
+        return view('edit_admin', ['targetAdmin' => $targetAdmin]);
+    }
+
+    function editAdminSubmit(Request $req)
+    {
+        $targetAdmin = Admin::find($req->id);
+        $targetAdmin->name = $req->name;
+        $targetAdmin->email = $req->email;
+        $targetAdmin->type = $req->type;
+        if($req->type == 'super')
+        {
+            $targetAdmin->access_voter = 'yes';
+            $targetAdmin->access_collect_vote = 'yes';
+        }
+        else
+        {
+            if($req->has('access_voter'))
+            {
+                $targetAdmin->access_voter = 'yes';
+            }
+            else
+            {
+                $targetAdmin->access_voter = 'no';
+            }
+            if($req->has('access_collect_vote'))
+            {
+                $targetAdmin->access_collect_vote = 'yes';
+            }
+            else
+            {
+                $targetAdmin->access_collect_vote = 'no';
+            }
+        }
+        $targetAdmin->password = $req->pwd;
+
+        $targetAdmin->save();
+        $req->session()->flash('message', 'Admin data updated.');
+        return redirect('/manage_admin');
+    }
+
+    function deleteAdmin($id, Request $req)
+    {
+        $targetAdmin = Admin::find($req->id);
+        $targetAdmin->delete();
+        $req->session()->flash('message', 'Admin data deleted.');
+        return redirect('/manage_admin');
+    }
+
 }

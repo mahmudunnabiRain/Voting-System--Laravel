@@ -2,11 +2,9 @@
 
 namespace App\Http\Middleware;
 
-
 use Closure;
-use app\Admin;
 
-class CheckAccessVoter
+class CheckSuper
 {
     /**
      * Handle an incoming request.
@@ -19,9 +17,10 @@ class CheckAccessVoter
     {
         if (!$request->session()->exists('adminData')) {
             // user value cannot be found in session
-            return redirect('/');   
+            return redirect('/');
+            
         }
-        else if($request->session()->get('adminData')->access_voter == 'no')
+        else if($request->session()->get('adminData')->type != 'super')
         {
             return redirect('/');
         }

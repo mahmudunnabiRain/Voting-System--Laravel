@@ -19,8 +19,8 @@ class CreateAdminsTable extends Migration
             $table->string('type',20);
             $table->string('email',50);
             $table->string('password',50);
-            $table->tinyInteger('access_voter');
-            $table->tinyInteger('access_collect_vote');
+            $table->string('access_voter',5);
+            $table->string('access_collect_vote',5);
             $table->timestamps();
         });
     }
