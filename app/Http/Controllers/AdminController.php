@@ -42,7 +42,7 @@ class AdminController extends Controller
                 $adminEntry->access_collect_vote = 'no';
             }
         }
-        $adminEntry->password = $req->pwd;
+        $adminEntry->password = $req->password;
 
         $adminEntry->save();
         $req->session()->flash('message', 'New admin created.');
@@ -52,20 +52,25 @@ class AdminController extends Controller
 
     function loginSubmit(Request $req)
     {
-        $adminData = Admin::where('email','=',$req->email)->first();
+        $loginValidator = $req->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:4|max:8'
+        ]);
+
+        $adminData = Admin::where('email',$req->email)->first();
         if(!$adminData)
         {
-            return redirect('/')->withErrors(['Email is not authorized !', 'The Message']);
+            return redirect('/')->withErrors(['email' => 'Email is not authorized !'])->withInput();
         }
     
-        if($adminData->password == $req->pwd)
+        if($adminData->password == $req->password)
         {
             Session::put('adminData', $adminData);
             return redirect('admin_home');
         }
         else
         {
-            return redirect('/')->withErrors(['Wrong password !', 'The Message']);
+            return redirect('/')->withErrors(['password' => 'Wrong password !'])->withInput();
         }
         
         
@@ -113,7 +118,7 @@ class AdminController extends Controller
                 $targetAdmin->access_collect_vote = 'no';
             }
         }
-        $targetAdmin->password = $req->pwd;
+        $targetAdmin->password = $req->password ;
 
         $targetAdmin->save();
         $req->session()->flash('message', 'Admin data updated.');

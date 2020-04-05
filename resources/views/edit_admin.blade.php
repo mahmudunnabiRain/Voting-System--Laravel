@@ -86,8 +86,8 @@
             </div>
 
             <div class="form-group">
-                <label for="pwd">Password</label>
-                <input type="password" class="form-control" id="pwd" name="pwd" value="{{$targetAdmin->password}}" placeholder="Password">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" value="{{$targetAdmin->password}}" placeholder="Password">
             </div>
 
             <div class="form-group">

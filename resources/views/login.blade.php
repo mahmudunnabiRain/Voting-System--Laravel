@@ -35,10 +35,10 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" href="#">VotingSystem</a>
+                <a class="navbar-brand">VotingSystem</a>
               </div>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
               </ul>
             </div>
           </nav>
@@ -50,20 +50,28 @@
         @section('content')
         
         <div class="login-form jumbotron">
-            <form action="/login_submit" method="POST">
+            <form action="/login_submit" method="POST" class="was-validated">
             @csrf
-                <div class="form-group">
-                  <label for="email">Email address:</label>
-                  <input type="email" class="form-control" id="email" name="email">
+                <div class="input-group @error('email') has-error @enderror">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
                 </div>
-                <div class="form-group">
-                  <label for="pwd">Password:</label>
-                  <input type="password" class="form-control" id="pwd" name="pwd">
+                @error('email')
+                  <small class="form-text text-muted">{{ $message }}</small>
+                  <br>
+                @enderror
+                <br>
+                <div class="input-group @error('password') has-error @enderror">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="password">
                 </div>
+                @error('password')
+                  <small class="form-text text-muted">{{ $message }}</small>
+                  <br>
+                @enderror               
+                <br>
                 <button type="submit" class="btn btn-primary">Login</button>
-                    @if($errors->any())
-                    <h5 class="error-msg">{{$errors->first()}}</h5>
-                    @endif
+                
               </form>
             </div>
         @show
