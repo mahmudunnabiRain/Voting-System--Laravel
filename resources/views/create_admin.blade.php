@@ -34,6 +34,8 @@
         }
     }
 
+    $(document).ready(show_permission_box); 
+
 </script>
 
     <div class="alert alert-warning" role="alert">
@@ -56,19 +58,27 @@
         <form action="create_admin_submit" method="POST" name="create_admin_form">
         @csrf
 
-            <div class="form-group">
+            <div class="form-group" @error('name') has-error @enderror>
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name">
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
             </div>
+            @error('name')
+                  <small class="form-text text-muted">{{ $message }}</small>
+                  <br>
+            @enderror
 
-            <div class="form-group">
+            <div class="form-group" @error('email') has-error @enderror>
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
             </div>
+            @error('email')
+                  <small class="form-text text-muted">{{ $message }}</small>
+                  <br>
+            @enderror
 
             <div class="form-group">
                 <label for="type">Select type</label>
-                <select class="form-control" id="type" name="type" onchange="show_permission_box()">
+                <select class="form-control" id="type" name="type" onchange="show_permission_box()" value="{{ old('type') }}">
                   <option value="super">Super</option>
                   <option value="co_admin">Co-Admin</option>
                 </select>
@@ -77,26 +87,34 @@
             <div style="display: none" id="permission_box">
 
                 <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="access_voter" name="access_voter">
+                <input type="checkbox" class="form-check-input" id="access_voter" name="access_voter" value="{{ old('access_voter') }}">
                 <label class="form-check-label" for="access_voter">Can manipulate voter info</label>
                 </div>
 
                 <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="access_collect_vote" name="access_collect_vote">
+                <input type="checkbox" class="form-check-input" id="access_collect_vote" name="access_collect_vote" value="{{ old('access_collect_vote') }}">
                 <label class="form-check-label" for="access_collect_vote">Can collect vote</label>
                 </div>
 
             </div>
 
-            <div class="form-group">
+            <div class="form-group" @error('password') has-error @enderror>
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
+            @error('password')
+                  <small class="form-text text-muted">{{ $message }}</small>
+                  <br>
+            @enderror
 
-            <div class="form-group">
+            <div class="form-group" @error('password') has-error @enderror>
                 <label for="pwd_retype">Retype Password</label>
                 <input type="password" class="form-control" id="pwd_retype" name="pwd_retype" placeholder="Password">
             </div>
+            @error('password')
+                  <small class="form-text text-muted">{{ $message }}</small>
+                  <br>
+            @enderror
 
             <button type="submit" class="btn btn-primary" style="width:100%">Create admin account</button>
         </form>
