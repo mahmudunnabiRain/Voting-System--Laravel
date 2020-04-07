@@ -13,6 +13,13 @@ class AdminController extends Controller
     //
     function createAdmin(Request $req)
     {
+
+        $creteAdminValidator = $req->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:admins',
+            'password' => 'required|min:4|max:8|confirmed'
+        ]);
+
         $adminEntry = new Admin();
 
         $adminEntry->name = $req->name;
@@ -90,6 +97,13 @@ class AdminController extends Controller
 
     function editAdminSubmit(Request $req)
     {
+        $editAdminValidator = $req->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'email' => 'unique:admins,email,'.$req->id,
+            'password' => 'required|min:4|max:8|confirmed'
+        ]);
+
         $targetAdmin = Admin::find($req->id);
         $targetAdmin->name = $req->name;
         $targetAdmin->email = $req->email;
@@ -119,6 +133,13 @@ class AdminController extends Controller
             }
         }
         $targetAdmin->password = $req->password ;
+
+        $editAdminValidator = $req->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'email' => 'unique:admins,email,'.$req->id,
+            'password' => 'required|min:4|max:8|confirmed'
+        ]);
 
         $targetAdmin->save();
         $req->session()->flash('message', 'Admin data updated.');

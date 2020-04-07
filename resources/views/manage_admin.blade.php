@@ -52,7 +52,7 @@
         <table class="table table-bordered table-condensed table-striped">
             <thead class="black white-text">
               <tr>
-                <th>id</th>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Type</th>
