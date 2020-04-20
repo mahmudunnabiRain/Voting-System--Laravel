@@ -48,7 +48,7 @@
                 @endif
 
                 @if (Session::get('adminData')->type == 'super')
-                <li class="dropdown {{ (request()->is('create_admin')) ? 'active' : '' }}">
+                <li class="dropdown {{ (request()->is('create_admin')) ? 'active' : '' }} {{ (request()->is('manage_admin')) ? 'active' : '' }} {{ (request()->is('manage_admin/edit/*')) ? 'active' : '' }}">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
