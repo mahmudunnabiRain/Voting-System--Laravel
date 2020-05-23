@@ -65,8 +65,8 @@ Route::get('/create_poll', function(){
     return view('create_poll');
 })->middleware('check_auth', 'check_super');
 
-Route::get('/voter', function(){
-    return view('voter');
+Route::get('/create_voter', function(){
+    return view('create_voter');
 })->middleware('check_auth', 'check_access_voter');
 
 Route::get('/progress', function(){

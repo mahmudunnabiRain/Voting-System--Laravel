@@ -62,7 +62,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Voter
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/voter">Create Voter</a></li>
+                      <li><a href="/create_voter">Create Voter</a></li>
                       <li><a href="#">Update Voter</a></li>
                       <li><a href="#">Kill voter</a></li>
                     </ul>
